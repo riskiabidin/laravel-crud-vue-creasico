@@ -1,16 +1,64 @@
 require('./bootstrap');
 window.Vue = require('vue');
-
-import Vue from 'vue'
+import Vue from 'vue';
 import VueRouter from 'vue-router'
+import VueAxios from 'vue-axios';
+import axios from 'axios';
+import { Form, HasError, AlertError } from 'vform';
+import Swal from 'sweetalert2';
+
+// import component
 import User from './components/User.vue'
 import Dashboard from './components/Dashboard.vue'
+import Register from './components/Register.vue'
+import EditUser from './components/EditUser.vue'
 
 Vue.use(VueRouter)
+Vue.use(VueAxios, axios);
+window.Form = Form;
+
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+window.Swal = Swal;
+window.Toast = Toast;
+
+
+import VueProgressBar from 'vue-progressbar'
+Vue.use(VueProgressBar, {
+    color: 'rgb(143, 255, 199)',
+    failedColor: 'red',
+    height: '3px'
+  });
 
 let routes = [
-    { path: '/user', component: User },
-    { path: '/dashboard', component: Dashboard }
+    { 
+      path: '/user', 
+      component: User, 
+      name:'user' 
+    },
+    { 
+      path: '/dashboard', 
+      component: Dashboard 
+    },
+    { 
+      path: '/register', 
+      component: Register 
+    },
+    { 
+      path: '/editUser/:id', 
+      component: EditUser 
+    },
+
   ]
 
   const router = new VueRouter({

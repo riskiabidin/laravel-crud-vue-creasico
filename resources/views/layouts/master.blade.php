@@ -74,9 +74,9 @@
                             e.zarazData["z_" + w.slice(7)] = v.getItem(w)
                         }
                     }));
-                    m.referrerPolicy = "origin";
-                    m.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(e.zarazData)));
-                    l.parentNode.insertBefore(m, l)
+                    // m.referrerPolicy = "origin";
+                    // m.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(e.zarazData)));
+                    // l.parentNode.insertBefore(m, l)
                 };
                 ["complete", "interactive"].includes(f.readyState) ? zaraz.init() : e.addEventListener(
                     "DOMContentLoaded", zaraz.init)

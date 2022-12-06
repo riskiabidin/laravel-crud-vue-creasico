@@ -1,6 +1,6 @@
 <template>
     <section class="content">
-       <div>Dashboard</div>
+        <div>Dashboard</div>
     </section>
 </template>
 
