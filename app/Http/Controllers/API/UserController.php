@@ -41,6 +41,12 @@ class UserController extends Controller
 
     function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'type' => 'required',
+        ]);
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
@@ -85,7 +91,11 @@ class UserController extends Controller
         if (!empty($request->password)) {
             $request->merge(['password' => Hash::make($request['password'])]);
         }
-
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'type' => 'required',
+        ]);
         $user->update($request->all());
         $result = [
             'data' => $user,

@@ -6,6 +6,8 @@ import VueAxios from 'vue-axios';
 import axios from 'axios';
 import { Form, HasError, AlertError } from 'vform';
 import Swal from 'sweetalert2';
+import VueNoty from 'vuejs-noty';
+import 'vuejs-noty/dist/vuejs-noty.css'
 
 // import component
 import User from './components/User.vue'
@@ -13,8 +15,9 @@ import Dashboard from './components/Dashboard.vue'
 import Register from './components/Register.vue'
 import EditUser from './components/EditUser.vue'
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
+Vue.use(VueNoty);
 window.Form = Form;
 
 

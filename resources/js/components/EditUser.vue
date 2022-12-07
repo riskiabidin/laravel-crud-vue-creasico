@@ -12,11 +12,13 @@
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" v-model="form.name" class="form-control" placeholder="Input Name">
+                        <div class="text-danger" v-if="errors.name">{{errors.name[0]}}</div>
                     </div>
                     <!-- {{form.data.name}} -->
                     <div class="form-group">
                         <label>Email address</label>
                         <input type="email" v-model="form.email" class="form-control" placeholder="Enter email">
+                        <div class="text-danger" v-if="errors.email">{{errors.email[0]}}</div>
                     </div>
                     <div class="form-group">
                         <label>Password</label>
@@ -29,6 +31,7 @@
                             <option value="admin">Admin</option>
                             <option value="user">Standard User</option>
                         </select>
+                        <div class="text-danger" v-if="errors.type">{{errors.type[0]}}</div>
                     </div>
 
                 </div>
@@ -53,7 +56,8 @@ export default {
                 email: '',
                 password: '',
                 email_verified_at: '',
-            }
+            },
+            errors:{}
         }
     },
     methods: {
@@ -63,7 +67,12 @@ export default {
             this.axios.put(uri, this.form).
                 then(response => {
                     console.log(response);
+                    this.$noty.success(response.data.message);
                     this.$router.push({ name: 'user' });
+                }).
+                catch((error)=>{
+                    console.log(error.response);
+                    this.errors=error.response.data.errors;
                 });
         },
         loadUsers() {
