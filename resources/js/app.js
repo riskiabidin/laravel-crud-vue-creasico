@@ -14,6 +14,7 @@ import User from './components/User.vue'
 import Dashboard from './components/Dashboard.vue'
 import Register from './components/Register.vue'
 import EditUser from './components/EditUser.vue'
+import Category from './components/Category.vue'
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
@@ -60,6 +61,10 @@ let routes = [
     { 
       path: '/editUser/:id', 
       component: EditUser 
+    },
+    { 
+      path: '/category', 
+      component: Category 
     },
 
   ]

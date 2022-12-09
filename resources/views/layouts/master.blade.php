@@ -207,7 +207,7 @@
                         data-accordion="false">
 
                         <li class="nav-item menu-open">
-                            
+
                             <router-link to="/dashboard" class="nav-link">
                                 <i class="fas fa-tachometer-alt"></i>
                                 <p>
@@ -220,6 +220,11 @@
                             <router-link to="/user" class="nav-link">
                                 <i class="fas fa-user"></i>
                                 <p>User</p>
+                            </router-link>
+
+                            <router-link to="/category" class="nav-link">
+                                <i class="fas fa-wrench"></i>
+                                <p>Category</p>
                             </router-link>
 
                             <a href="#" class="nav-link"
@@ -246,7 +251,7 @@
 
         {{-- main content --}}
         <div class="content-wrapper">
-            
+
             <router-view></router-view>
         </div>
 
