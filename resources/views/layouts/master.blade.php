@@ -226,6 +226,10 @@
                                 <i class="fas fa-wrench"></i>
                                 <p>Category</p>
                             </router-link>
+                            <router-link to="/supplier" class="nav-link">
+                                <i class="fas fa-wrench"></i>
+                                <p>Supplier</p>
+                            </router-link>
 
                             <a href="#" class="nav-link"
                                 onclick="event.preventDefault();
