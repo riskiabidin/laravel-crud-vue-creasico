@@ -18,6 +18,8 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nama supplier</th>
+                        <th scope="col">Alamat</th>
+                        <th scope="col">Telepon</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -25,6 +27,8 @@
                     <tr v-for="supplier in suppliers.data" :key="supplier.id">
                         <th scope="row">{{ supplier.id }}</th>
                         <td>{{ supplier.name_supplier }}</td>
+                        <td>{{ supplier.alamat }}</td>
+                        <td>{{ supplier.telepon }}</td>
                         <td>
                             <a href="#" @click="editSupplier(supplier.id)">
                                 <i class="fa fa-edit blue"></i>

@@ -230,6 +230,10 @@
                                 <i class="fas fa-wrench"></i>
                                 <p>Supplier</p>
                             </router-link>
+                            <router-link to="/produk" class="nav-link">
+                                <i class="fas fa-wrench"></i>
+                                <p>Produk</p>
+                            </router-link>
 
                             <a href="#" class="nav-link"
                                 onclick="event.preventDefault();
