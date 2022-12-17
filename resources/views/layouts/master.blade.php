@@ -234,6 +234,10 @@
                                 <i class="fas fa-wrench"></i>
                                 <p>Produk</p>
                             </router-link>
+                            <router-link to="/pembelian" class="nav-link">
+                                <i class="fas fa-wrench"></i>
+                                <p>Pembelian</p>
+                            </router-link>
 
                             <a href="#" class="nav-link"
                                 onclick="event.preventDefault();

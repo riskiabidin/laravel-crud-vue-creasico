@@ -17,6 +17,8 @@ import EditUser from './components/EditUser.vue'
 import Category from './components/Category.vue'
 import Supplier from './components/Supplier.vue'
 import Produk from './components/Produk.vue'
+import Pembelian from './components/Pembelian.vue'
+import Insert_Pembelian from './components/Insert_Pembelian.vue'
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
@@ -75,6 +77,16 @@ let routes = [
     { 
       path: '/produk', 
       component: Produk 
+    },
+    { 
+      path: '/pembelian', 
+      component: Pembelian,
+      name:'pembelian' 
+
+    },
+    { 
+      path: '/insert_pembelian', 
+      component: Insert_Pembelian
     },
 
   ]

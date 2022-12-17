@@ -15,7 +15,7 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $produk = produk::all();
+        // $produk = produk::all();
         $produk = produk::with('category')->get();
         
         $result = [

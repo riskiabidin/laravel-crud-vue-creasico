@@ -22,6 +22,7 @@ Route::resource('/user', App\Http\Controllers\API\UserController::class);
 Route::resource('/category', App\Http\Controllers\API\CategoryController::class);
 Route::resource('/supplier', App\Http\Controllers\API\SupplierController::class);
 Route::resource('/produk', App\Http\Controllers\API\ProdukController::class);
+Route::resource('/pembelian', App\Http\Controllers\API\PembelianController::class);
 
 
 // Route::get('/dashboard', [App\Http\Controllers\API\UserController::class, 'dashboard']);
