@@ -28,9 +28,9 @@
                         <td>{{ pembelian.supplier.name_supplier }}</td>
                         <td>{{ pembelian.total_harga }}</td>
                         <td>
-                            <a href="#" @click="editPembelian(pembelian.id)">
+                            <router-link :to="`/editPembelian/${pembelian.id}`">
                                 <i class="fa fa-edit blue"></i>
-                            </a>
+                            </router-link>
                             /
                             <a href="#" @click="deletePembelian(pembelian.id)">
                                 <i class="fa fa-trash red"></i>
@@ -52,16 +52,16 @@ export default {
         }
     },
     methods: {
-        editPembelian(id) {
-            this.axios.get(`http://localhost:8000/api/pembelian/` + id).
-                then(response => {
-                    console.log(response);
-                    this.editmode = true;
-                    this.errors={};
-                    this.form = response.data.data;
-                    $('#addNew').modal('show');
-                });
-        },
+        // editPembelian(id) {
+        //     this.axios.get(`http://localhost:8000/api/pembelian/` + id).
+        //         then(response => {
+        //             console.log(response);
+        //             this.editmode = true;
+        //             this.errors = {};
+        //             this.form = response.data.data;
+        //             $('#addNew').modal('show');
+        //         });
+        // },
         updatePembelian() {
             console.log(this.form)
             let uri = `http://localhost:8000/api/pembelian/` + this.form.id;
@@ -92,9 +92,9 @@ export default {
                     console.log(response.data);
                     this.pembelians = response.data;
                 });
-                this.form={};
-                this.errors={};
-                this.editmode=false;
+            this.form = {};
+            this.errors = {};
+            this.editmode = false;
         },
     },
     mounted() {

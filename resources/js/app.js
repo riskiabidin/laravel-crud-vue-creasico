@@ -19,6 +19,7 @@ import Supplier from './components/Supplier.vue'
 import Produk from './components/Produk.vue'
 import Pembelian from './components/Pembelian.vue'
 import Insert_Pembelian from './components/Insert_Pembelian.vue'
+import Edit_Pembelian from './components/Edit_Pembelian.vue'
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
@@ -87,6 +88,10 @@ let routes = [
     { 
       path: '/insert_pembelian', 
       component: Insert_Pembelian
+    },
+    { 
+      path: '/editpembelian/:id', 
+      component: Edit_Pembelian
     },
 
   ]

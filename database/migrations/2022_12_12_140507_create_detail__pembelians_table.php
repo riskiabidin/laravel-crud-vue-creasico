@@ -16,9 +16,9 @@ class CreateDetailPembeliansTable extends Migration
         Schema::create('detail__pembelians', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_pembelian');
-            $table->foreign('id_pembelian')->references('id')->on('pembelians');
+            $table->foreign('id_pembelian')->references('id')->on('pembelians')->onDelete('cascade');;
             $table->unsignedBigInteger('id_produk');
-            $table->foreign('id_produk')->references('id')->on('produks');
+            $table->foreign('id_produk')->references('id')->on('produks')->onDelete('cascade');;
             $table->bigInteger('harga_beli')->unsigned();
             $table->integer('jumlah')->unsigned();
             $table->bigInteger('sub_total')->unsigned();

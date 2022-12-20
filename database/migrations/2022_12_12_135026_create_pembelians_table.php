@@ -16,7 +16,7 @@ class CreatePembeliansTable extends Migration
         Schema::create('pembelians', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_supplier');
-            $table->foreign('id_supplier')->references('id')->on('suppliers');
+            $table->foreign('id_supplier')->references('id')->on('suppliers')->onDelete('cascade');;
             $table->bigInteger('total_harga')->unsigned();
             $table->timestamps();
         });

@@ -17,7 +17,7 @@ class CreateProduksTable extends Migration
             $table->id();
             $table->bigInteger('kode_produk')->unsigned();
             $table->unsignedBigInteger('id_category');
-            $table->foreign('id_category')->references('id')->on('categories');
+            $table->foreign('id_category')->references('id')->on('categories')->onDelete('cascade');;
             $table->string('name_produk', 100);
             $table->string('merk', 50);
             $table->bigInteger('harga_beli')->unsigned();

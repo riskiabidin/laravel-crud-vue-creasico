@@ -46,7 +46,7 @@ class PembelianController extends Controller
     {
         $validated = $request->validate([
             'id_supplier' => 'required',
-            'total_harga'=>'required'
+            'total_harga' => 'required'
         ]);
         $pembelian = new Pembelian;
         $pembelian->id_supplier = $request->id_supplier;
@@ -55,14 +55,14 @@ class PembelianController extends Controller
 
         foreach ($request->detail as $row) {
             Detail_Pembelian::create([
-                'id_pembelian'=>$pembelian->id,
-                'id_produk'=>$row['id_produk'],
-                'harga_beli'=>$row['harga_beli'],
-                'jumlah'=>$row['jumlah'],
-                'sub_total'=>$row['sub_total']
+                'id_pembelian' => $pembelian->id,
+                'id_produk' => $row['id_produk'],
+                'harga_beli' => $row['harga_beli'],
+                'jumlah' => $row['jumlah'],
+                'sub_total' => $row['sub_total']
             ]);
         }
-       
+
         $result = [
             'data' => $pembelian,
             'code' => 200,
@@ -80,7 +80,14 @@ class PembelianController extends Controller
      */
     public function show($id)
     {
-        //
+        // $pembelian = Pembelian::with('detail', 'produk')->findOrFail($id);
+        $pembelian = Pembelian::with('detail.produk')->findOrFail($id);//nested relathionship acces function produk in detail_pembelian model
+        $result = [
+            'data' => $pembelian,
+            'code' => 200,
+            'message' => 'edit pembelian successfully!',
+        ];
+        return response()->json($result);
     }
 
     /**
@@ -103,7 +110,42 @@ class PembelianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'id_supplier' => 'required',
+            'total_harga' => 'required'
+        ]);
+        $pembelian = Pembelian::findOrFail($id);
+        $pembelian->id_supplier = $request->id_supplier;
+        $pembelian->total_harga = $request->total_harga;
+        $pembelian->save();
+        for($i=0;$i<count($request->delete);$i++){
+            $detail_pembelian = Detail_Pembelian::findOrFail($request->delete[$i]);
+            $detail_pembelian->delete();
+        }
+        // foreach ($request->delete as $row) {
+        //     $detail_pembelian = Detail_Pembelian::findOrFail($id);
+        //     $detail_pembelian->delete();
+        // }
+        foreach ($request->detail as $row) {
+            Detail_Pembelian::updateOrCreate(
+                ['id' => $row['id'],],
+                [
+                    'id_pembelian' => $pembelian->id,
+                    'id_produk' => $row['id_produk'],
+                    'harga_beli' => $row['harga_beli'],
+                    'jumlah' => $row['jumlah'],
+                    'sub_total' => $row['sub_total']
+                ]
+            );
+        }
+
+        $result = [
+            'data' => $pembelian,
+            'code' => 200,
+            'message' => 'update pembelian successfully!',
+        ];
+
+        return response()->json($result);
     }
 
     /**
@@ -114,6 +156,13 @@ class PembelianController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pembelian = Pembelian::findOrFail($id);
+        $pembelian->delete();
+        $result = [
+            'data' => $pembelian,
+            'code' => 200,
+            'message' => 'delete pembelian successfully!',
+        ];
+        return response()->json($result);
     }
 }

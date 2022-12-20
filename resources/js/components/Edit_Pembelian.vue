@@ -6,7 +6,7 @@
                 <h3 class="card-title">pembelian</h3>
             </div>
 
-            <form @submit.prevent="createPembelian">
+            <form @submit.prevent="updatePembelian">
                 <div class="card-body">
                     <div class="form-group">
                         <label>supplier name:</label>
@@ -45,12 +45,12 @@
                             <tr v-for="(detail, index) in form.detail">
                                 <th scope="row"></th>
                                 <!-- <td>{{ detail.id_produk }}</td> -->
-                                <td>{{ detail.name_produk }}</td>
+                                <td>{{ detail.produk.name_produk }}</td>
                                 <td>{{ detail.harga_beli }}</td>
                                 <td>{{ detail.jumlah }}</td>
                                 <td>{{ detail.sub_total }}</td>
                                 <td>
-                                    <a href="#" @click="editDetail(index)">
+                                    <a href="#" @click="editDetail(index, detail.id)">
                                         <i class="fa fa-edit blue"></i>
                                     </a>
                                     /
@@ -130,14 +130,17 @@ export default {
             editmode: false,
             indexDetail: null,
             form: {
-                detail: []
+                detail: [],
+                delete:[]
             },
             form2: {
+                id:null,
                 id_produk: '',
-                name_produk: '',
+                // name_produk: '',
                 harga_beli: 0,
                 jumlah: 1,
                 sub_total: 0,
+                produk:{name_produk:''}
 
             },
             suppliers: [],
@@ -150,7 +153,7 @@ export default {
         detail() {
             for (let i = 0; i < this.produks.data.length; i++) {
                 if (this.produks.data[i].id == this.form2.id_produk) {
-                    this.form2.name_produk = this.produks.data[i].name_produk;
+                    this.form2.produk.name_produk = this.produks.data[i].name_produk;
                     this.form2.harga_beli = this.produks.data[i].harga_beli;
                     this.hitungSubTotal();
                 }
@@ -173,15 +176,17 @@ export default {
             this.errors = {};
             $('#addNew').modal('show');
         },
-        bersih(){
+        bersih() {
             this.editmode = false;
-            this.indexDetail=null;
+            this.indexDetail = null;
             this.form2 = {
+                id:null,
                 id_produk: '',
-                name_produk: '',
+                // name_produk: '',
                 harga_beli: 0,
                 jumlah: 1,
                 sub_total: 0,
+                produk:{name_produk:''}
             };
         },
         createDetail() {
@@ -192,35 +197,36 @@ export default {
             // console.log(this.form);
 
         },
-        deleteDetail(index) {
+        deleteDetail(index, kl) {
+            this.form.delete.push(this.form.detail[index].id);
             this.form.detail.splice(index, 1);
             this.hitungTotalHarga();
-
         },
         editDetail(index) {
             this.indexDetail = index;
             this.editmode = true;
             this.form2.id_produk = this.form.detail[index].id_produk;
+            this.form2.produk.name_produk = this.form.detail[index].produk.name_produk;
             this.form2.harga_beli = this.form.detail[index].harga_beli;
             this.form2.jumlah = this.form.detail[index].jumlah;
             this.form2.sub_total = this.form.detail[index].sub_total;
             $('#addNew').modal('show');
         },
         updateDetail() {
-            this.hitungTotalHarga();
             this.form.detail[this.indexDetail].id_produk = this.form2.id_produk;
-            this.form.detail[this.indexDetail].name_produk = this.form2.name_produk;
+            this.form.detail[this.indexDetail].produk.name_produk = this.form2.produk.name_produk;
             this.form.detail[this.indexDetail].harga_beli = this.form2.harga_beli;
             this.form.detail[this.indexDetail].jumlah = this.form2.jumlah;
             this.form.detail[this.indexDetail].sub_total = this.form2.sub_total;
+            this.hitungTotalHarga();
             $('#addNew').modal('hide');
             this.bersih();
 
         },
-        createPembelian() {
+        updatePembelian() {
             console.log(this.form)
-            let uri = `http://localhost:8000/api/pembelian`;
-            this.axios.post(uri, this.form).
+            let uri = `http://localhost:8000/api/pembelian/${this.$route.params.id}`;
+            this.axios.put(uri, this.form).
                 then(response => {
                     console.log(response);
                     this.$noty.success(response.data.message);
@@ -249,6 +255,27 @@ export default {
                 });
 
         },
+        loadPembelian() {
+            this.loadProduks();
+
+            let uri = `http://localhost:8000/api/pembelian/${this.$route.params.id}`;
+            this.axios.get(uri).
+                then(response => {
+                    console.log(response.data.data);
+                    this.form = response.data.data;
+                    // for (let i = 0; i < this.form.detail.length; i++) {
+                    //     for(let j=0;j<this.produks.data.length;j++){
+                    //         if(this.form.detail[i].id_produk == this.produks.data[j].id){
+                    //             this.form.detail[i].name_produk = this.produks.data[j].name_produk;
+                    //         }
+                    //     }
+                    //     // this.form.detail[i].name_produk = this.form.produk[i].name_produk;
+
+                    // }
+                    this.form.delete=[];
+                });
+
+        }
     },
     mounted() {
 
@@ -257,6 +284,8 @@ export default {
     created() {
         this.loadSuppliers();
         this.loadProduks();
+        this.loadPembelian();
+
     }
 }
 </script>
