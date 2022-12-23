@@ -23,6 +23,7 @@ Route::resource('/category', App\Http\Controllers\API\CategoryController::class)
 Route::resource('/supplier', App\Http\Controllers\API\SupplierController::class);
 Route::resource('/produk', App\Http\Controllers\API\ProdukController::class);
 Route::resource('/pembelian', App\Http\Controllers\API\PembelianController::class);
+Route::resource('/member', App\Http\Controllers\API\MemberController::class);
 
 
 // Route::get('/dashboard', [App\Http\Controllers\API\UserController::class, 'dashboard']);
