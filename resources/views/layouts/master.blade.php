@@ -242,7 +242,10 @@
                                 <i class="fas fa-wrench"></i>
                                 <p>Member</p>
                             </router-link>
-
+                            <router-link to="/penjualan" class="nav-link">
+                                <i class="fas fa-wrench"></i>
+                                <p>Penjualan</p>
+                            </router-link>
                             <a href="#" class="nav-link"
                                 onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">

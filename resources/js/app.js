@@ -21,6 +21,11 @@ import Pembelian from './components/Pembelian.vue'
 import Insert_Pembelian from './components/Insert_Pembelian.vue'
 import Edit_Pembelian from './components/Edit_Pembelian.vue'
 import Member from './components/Member.vue'
+import Penjualan from './components/Penjualan.vue'
+import Insert_Penjualan from './components/Insert_Penjualan.vue'
+import Edit_Penjualan from './components/Edit_Penjualan.vue'
+
+
 
 
 Vue.use(VueRouter);
@@ -100,6 +105,20 @@ let routes = [
       component: Member,
       name:'member' 
 
+    },
+    { 
+      path: '/penjualan', 
+      component: Penjualan,
+      name:'penjualan' 
+
+    },
+    { 
+      path: '/insert_penjualan', 
+      component: Insert_Penjualan
+    },
+    { 
+      path: '/editPenjualan/:id', 
+      component: Edit_Penjualan
     },
 
   ]
