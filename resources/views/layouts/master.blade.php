@@ -203,49 +203,73 @@
                 </div>
 
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-
-                        <li class="nav-item menu-open">
-
-                            <router-link to="/dashboard" class="nav-link">
-                                <i class="fas fa-tachometer-alt"></i>
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview"
+                        role="menu"data-accordion="false">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-cog"></i>
                                 <p>
-                                    Dashboard
-
+                                    Master
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
-                            </router-link>
-
-
-                            <router-link to="/user" class="nav-link">
-                                <i class="fas fa-user"></i>
-                                <p>User</p>
-                            </router-link>
-
-                            <router-link to="/category" class="nav-link">
-                                <i class="fas fa-wrench"></i>
-                                <p>Category</p>
-                            </router-link>
-                            <router-link to="/supplier" class="nav-link">
-                                <i class="fas fa-wrench"></i>
-                                <p>Supplier</p>
-                            </router-link>
-                            <router-link to="/produk" class="nav-link">
-                                <i class="fas fa-wrench"></i>
-                                <p>Produk</p>
-                            </router-link>
-                            <router-link to="/pembelian" class="nav-link">
-                                <i class="fas fa-wrench"></i>
-                                <p>Pembelian</p>
-                            </router-link>
-                            <router-link to="/member" class="nav-link">
-                                <i class="fas fa-wrench"></i>
-                                <p>Member</p>
-                            </router-link>
-                            <router-link to="/penjualan" class="nav-link">
-                                <i class="fas fa-wrench"></i>
-                                <p>Penjualan</p>
-                            </router-link>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <router-link to="/category" class="nav-link">
+                                        <i class="fas fa-wrench"></i>
+                                        <p>Category</p>
+                                    </router-link>
+                                </li>
+                                <li class="nav-item">
+                                    <router-link to="/supplier" class="nav-link">
+                                        <i class="fas fa-warehouse"></i>
+                                        <p>Supplier</p>
+                                    </router-link>
+                                </li>
+                                <li class="nav-item">
+                                    <router-link to="/member" class="nav-link">
+                                        <i class="fas fa-user-friends"></i>
+                                        <p>Member</p>
+                                    </router-link>
+                                </li>
+                                <li class="nav-item">
+                                    <router-link to="/produk" class="nav-link">
+                                        <i class="fas fa-tag"></i>
+                                        <p>Produk</p>
+                                    </router-link>
+                                </li>
+                                <li class="nav-item">
+                                    <router-link to="/user" class="nav-link">
+                                        <i class="fas fa-user"></i>
+                                        <p>User</p>
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-cart-plus"></i>
+                                <p>
+                                    Transaksi
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <router-link to="/pembelian" class="nav-link">
+                                        <i class="fas fa-shopping-bag"></i>
+                                        <p>Pembelian</p>
+                                    </router-link>
+                                </li>
+                                <li class="nav-item">
+                                    <router-link to="/penjualan" class="nav-link">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <p>Penjualan</p>
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
                             <a href="#" class="nav-link"
                                 onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
@@ -258,9 +282,7 @@
                                 style="display: none;">
                                 @csrf
                             </form>
-
                         </li>
-
                     </ul>
                 </nav>
 
